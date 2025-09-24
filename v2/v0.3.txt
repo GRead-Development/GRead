@@ -1,0 +1,6 @@
+# V0.3
+- Installed Advanced Custom Fields plugin.
+- Installed Favorites plugin.
+- Updated GamiPress from 7.5.2 to 7.5.3.
+- Updated GreenShift from 12.2.1 to 12.2.4.
+- Uninstalled Akismet.
