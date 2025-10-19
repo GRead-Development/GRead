@@ -1,0 +1,27 @@
+<?php
+
+// This file provides the site's statistics tracker.
+
+
+// The total count of books in the database
+function hs_total_books_shortcode()
+{
+	$count = wp_count_posts('book');
+	$total_books = $count -> publish ?? 0;
+	return number_format($total_books);
+}
+add_shortcode('total_books', 'hs_total_books_shortcode');
+
+
+
+function hs_site_stats_styles()
+{
+	echo '<style>
+		.hs-site-stats-container ul { list-style-type: none; padding-left: 0; }
+		.hs-site-stats-container li { border-bottom: 1px solid #eee; padding: 8px 0; }
+		.hs-site-stats-container li:last-child { border-bottom: none; }
+	</style>';
+}
+add_action('wp_head', 'hs_site_stats_styles');
+
+?>
