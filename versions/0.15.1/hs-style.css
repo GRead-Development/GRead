@@ -1,0 +1,305 @@
+/* Some cool stuff for the tracking */
+
+.hs-container
+{
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.hs-book-list,
+.hs-my-book-list
+{
+    /* Why mention it if it is set to zero? */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hs-book-list li,
+.hs-my-book-list li
+{
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+}
+
+.hs-book-list h3,
+.hs-my-book-list h3
+{
+    margin-top: 0;
+}
+
+.hs-button
+{
+    background-color: #0073aa;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.hs-button:hover
+{
+    background-color: #005a87;
+}
+
+.hs-button:disabled
+{
+    background-color: #a0a5aa;
+    cursor: not-allowed;
+}
+
+/* TOOL bar (get it?) */
+.hs-progress-bar-container
+{
+    background-color: #e9ecef;
+    border-radius: 5px;
+    height: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.hs-progress-bar
+{
+    background-color: #28a745;
+    height: 100%;
+    border-radius: 5px;
+    /* ಠ_ಠ wat */
+    transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out;
+}
+
+.hs-progress-bar.golden
+{
+	background-color: #FFD700;
+}
+
+.hs-my-book.completed
+{
+	background-color: #fffaf0;
+	border-left: 5px solid #FFD700;
+}
+
+
+
+/* TOOL form */
+.hs-progress-form
+{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hs-progress-form input[type="number"]
+{
+    width: 80px;
+    padding: 5px;
+}
+
+.hs-feedback
+{
+    font-size: 13px;
+    font-size: italic;
+}
+
+.hs-container h2
+{
+	margin-top: 20px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+}
+
+.hs-book-list li,
+.hs-my-book-list li
+{
+	background-color: #fff;
+	transition: all 0.3s ease-in-out;
+}
+
+.hs-remove-book
+{
+	background-color: #d63638;
+}
+
+.hs-remove-book:hover
+{
+	background-color: #b02a2c;
+}
+
+.hs-button
+{
+	margin-top: 10px;
+}
+
+.hs-book-achievement
+{
+	transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+	transform: scale(1.02);
+	box-shadow: 0 0 15px #FFD700;
+}
+
+.hs-feedback
+{
+	font-style: italic;
+}
+
+.hs-completed-section
+{
+	margin-top: 40px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+}
+
+.hs-completed-section summary
+{
+	padding: 10px 20px;
+	cursor: pointer;
+	outline: none;
+	font-weight: bold;
+}
+
+.hs-completed-section summary:hover
+{
+	background-color: #f1f1f1;
+}
+
+.hs-completed-section summary h3
+{
+	display: inline;
+	margin: 0;
+	font-size: 1.1em;
+}
+
+.hs-completed-section[open] > summary
+{
+	border-bottom: 1px solid #ddd;
+}
+
+.hs-completed-section .hs-my-book-list
+{
+	padding: 20px;
+}
+
+#hs-open-report-modal
+{
+	margin-top: 20px;
+}
+
+#hs-report-modal
+{
+	position: fixed;
+	z-index: 1001;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.6);
+}
+
+.hs-modal-content
+{
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 25px;
+	border: 1px solid #888;
+	width: 80%;
+	max-width: 500px;
+	position: relative;
+	border-radius: 5px;
+}
+
+#hs-close-report-modal
+{
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#hs-report-textarea
+{
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	box-sizing: border-box;
+}
+
+/* -------------------------------------------
+ * Styles for the [my_books] shortcode output
+ * Increased specificity using .hs-container
+ * ------------------------------------------- */
+
+/* Overall Container for the Sort/Filter Form */
+.hs-container .hs-sort-filter-form {
+    display: flex !important; /* Adding !important to ensure flex layout isn't overridden */
+    flex-wrap: wrap; /* Allows groups to wrap on smaller screens */
+    gap: 1.5rem; /* Space between groups */
+    padding: 15px 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e0e0e0;
+    align-items: center;
+	background-color: #fdf4e3;
+	border-radius: 5px;
+}
+
+/* Container for each sorting/filtering control */
+.hs-container .hs-sort-group,
+.hs-container .hs-filter-group {
+    display: flex !important;
+    flex-direction: column; /* Stack label and control vertically */
+    flex-grow: 1; /* Allow groups to take up available space */
+    max-width: 100%; /* Default to full width on mobile */
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Adjust layout for the filter group (checkbox) */
+.hs-container .hs-filter-group {
+    flex-direction: row !important; /* Keep checkbox and label inline */
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px; /* Adjust spacing when controls are stacked */
+}
+
+/* Style the labels */
+.hs-container .hs-sort-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 0.9em;
+}
+
+/* Style the select elements for sort controls */
+.hs-container .hs-sort-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 1em;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+/* Style the checkbox */
+.hs-container .hs-filter-group input[type="checkbox"] {
+	margin: 4px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.hs-container .hs-filter-group label {
+    font-weight: normal;
+    font-size: 1em;
+    cursor: pointer;
+}
