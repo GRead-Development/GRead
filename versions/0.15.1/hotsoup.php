@@ -2,7 +2,7 @@
 /**
  * Plugin Name: HotSoup!
  * Description: A delicious plugin for tracking your reading!
- * Version: 0.14
+ * Version: 0.15.1
  * Author: Bryce Davis, Daniel Teberian
  */
 
