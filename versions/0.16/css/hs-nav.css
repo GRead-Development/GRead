@@ -1,0 +1,65 @@
+/* HotSoup's navigation menu */
+
+#masthead
+{
+	display: none !important;
+}
+
+#hs-nav-container
+{
+	position: fixed;
+	top: 25px;
+	right: 25px;
+	z-index: 9999;
+}
+
+.hs-nav-trigger,
+.hs-nav-menu a
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	background-color: #0073aa;
+	color: #fff;
+	border-radius: 50%;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+}
+
+.hs-nav-trigger
+{
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.hs-nav-menu
+{
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(15px);
+	transition: all 0.3s ease-in-out;
+	margin-top: 15px;
+}
+
+#hs-nav-container:hover .hs-nav-menu
+{
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.hs-nav-menu a
+{
+	margin-bottom: 15px;
+	font-size: 18px;
+}
+
+.hs-nav-menu a:hover
+{
+	background-color: #005a87;
+	transform: scale(1.15);
+	color: #fff;
+}
