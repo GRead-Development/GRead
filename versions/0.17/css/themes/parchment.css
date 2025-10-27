@@ -1,0 +1,136 @@
+/* * PARCHMENT THEME
+ * Overrides the default CSS variables and adds theme-specific rules.
+ */
+
+/* 1. Re-define CSS variables */
+body.theme-parchment {
+    --hs-bg-primary: #f5eeda;
+    --hs-bg-secondary: #efe1c6;
+    --hs-bg-tertiary: #e9d8b8;
+    --hs-text-primary: #4a3a2a;
+    --hs-text-secondary: #5a4a3a;
+    --hs-border-color: #d8c8a8;
+    --hs-accent-primary: #8a6d4c;
+    --hs-accent-primary-hover: #6a4d2c;
+    --hs-accent-secondary: #5a8a4c;
+    --hs-accent-danger: #a94442;
+    --hs-link-color: #7a5d3c;
+    --hs-golden-glow: #e6c300;
+}
+
+/* 2. Apply variables to site-wide elements */
+body.theme-parchment {
+    background-color: var(--hs-bg-primary) !important;
+    color: var(--hs-text-primary) !important;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+body.theme-parchment .site-header-wrapper,
+body.theme-parchment #page,
+body.theme-parchment .site-header,
+body.theme-parchment .widget,
+body.theme-parchment .entry-content,
+body.theme-parchment .entry-summary,
+body.theme-parchment footer.site-footer,
+body.theme-parchment .site-info,
+body.theme-parchment #whats-new-form {
+    background-color: var(--hs-bg-secondary) !important;
+    border-color: var(--hs-border-color) !important;
+}
+
+body.theme-parchment #secondary .widget {
+    background-color: var(--hs-bg-tertiary) !important;
+    border: 1px solid var(--hs-border-color) !important;
+}
+
+/* 3. Typography & Links */
+body.theme-parchment h1,
+body.theme-parchment h2,
+body.theme-parchment h3,
+body.theme-parchment h4,
+body.theme-parchment h5,
+body.theme-parchment h6,
+body.theme-parchment .entry-title a {
+    color: var(--hs-text-primary) !important;
+    border-bottom-color: var(--hs-border-color);
+}
+
+body.theme-parchment a {
+    color: var(--hs-link-color) !important;
+}
+
+body.theme-parchment a:hover {
+    color: #8c7350 !important;
+}
+
+/* 4. Plugin-Specific Elements (HotSoup) */
+body.theme-parchment .hs-container,
+body.theme-parchment .hs-book-list li,
+body.theme-parchment .hs-my-book-list li,
+body.theme-parchment .hs-completed-section {
+    background-color: var(--hs-bg-tertiary) !important;
+    border-color: var(--hs-border-color) !important;
+    color: var(--hs-text-primary) !imporant;
+}
+
+body.theme-parchment .hs-progress-bar-container {
+    background-color: var(--hs-border-color) !important;
+}
+
+body.theme-parchment .hs-progress-bar {
+    background-color: var(--hs-accent-primary) !important;
+}
+
+/* 5. BuddyPress Activity Stream */
+body.theme-parchment ul.activity-list li,
+body.theme-parchment div.activity-comments {
+    background-color: var(--hs-bg-tertiary) !important;
+    border-color: var(--hs-border-color) !important;
+}
+
+body.theme-parchment .activity-content,
+body.theme-parchment .activity-header p,
+body.theme-parchment .activity-meta a,
+body.theme-parchment div.activity-comments h4,
+body.theme-parchment div.activity-comments ul li,
+body.theme-parchment .acomment-options a {
+    color: var(--hs-text-primary) !important;
+}
+
+body.theme-parchment .activity-header p a,
+body.theme-parchment .activity-content a,
+body.theme-parchment .activity-comments a,
+body.theme-parchment .acomment-options a:hover {
+    color: var(--hs-link-color) !important;
+}
+
+body.theme-parchment .activity-header p a:hover,
+body.theme-parchment .activity-content a:hover,
+body.theme-parchment .activity-comments a:hover {
+    color: #8c7350 !important;
+}
+
+body.theme-parchment #whats-new-content,
+body.theme-parchment #whats-new-textarea,
+body.theme-parchment div.activity-comments form textarea,
+body.theme-parchment div.activity-comments form input[type="text"] {
+    background-color: var(--hs-bg-primary) !important;
+    color: var(--hs-text-primary) !important;
+    border-color: var(--hs-border-color) !imporant;
+}
+
+body.theme-parchment .generic-button,
+body.theme-parchment .generic-button a,
+body.theme-parchment div.activity-comments form input[type="submit"],
+body.theme-parchment #whats-new-submit input[type="submit"] {
+    background: var(--hs-accent-primary) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+body.theme-parchment .generic-button:hover,
+body.theme-parchment .generic-button a:hover,
+body.theme-parchment div.activity-comments form input[type="submit"]:hover,
+body.theme-parchment #whats-new-submit input[type="submit"]:hover {
+    background: var(--hs-accent-primary-hover) !imporant;
+}
