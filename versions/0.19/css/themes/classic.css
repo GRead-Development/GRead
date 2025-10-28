@@ -1,0 +1,17 @@
+/* The classic theme */
+
+:root
+{
+	--hs-bg-primary: #ffffff;
+	--hs-bg-secondary: #f9f9f9;
+	--hs-bg-tertiary:#e9ecef;
+	--hs-text-primary: #212529;
+	--hs-text-secondary: #495057;
+	--hs-border-color: #dee2e6;
+	--hs-accent-primary: #0073aa;
+	--hs-accent-primary-hover: #005a87;
+	--hs-accent-secondary: #28a745;
+	--hs-accent-danger: #d63638;
+	--hs-link-color: #0056b3;
+	--hs-golden-glow: #FFD700;
+}

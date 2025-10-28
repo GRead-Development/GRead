@@ -1,0 +1,48 @@
+/* UNIVERSAL THEME OVERRIDES FOR BUDDYX + BUDDYPRESS */
+
+body,
+#buddypress,
+.buddypress-wrap {
+    background: var(--hs-background, #fff) !important;
+    color: var(--hs-text_color, #000) !important;
+}
+
+/* BuddyPress navigation and member headers */
+.bp-member-nav,
+#buddypress .item-list-tabs,
+#object-nav,
+#subnav,
+#buddypress .bp-navs {
+    background: var(--hs-card_background, var(--hs-background, #fff)) !important;
+    border-color: var(--hs-border_color, #ccc) !important;
+}
+
+.bp-member-nav a,
+#buddypress .bp-navs a {
+    color: var(--hs-accent, #0073aa) !important;
+}
+
+/* Activity feed cards */
+#buddypress .activity-item,
+#buddypress .activity-inner,
+#buddypress .activity-list .activity-content {
+    background: var(--hs-card_background, var(--hs-background, #fff)) !important;
+    color: var(--hs-text_color, #000) !important;
+    border: 1px solid var(--hs-border_color, #ccc) !important;
+}
+
+/* Buttons */
+.button, button, input[type="submit"], a.button {
+    background: var(--hs-accent, #0073aa) !important;
+    color: #fff !important;
+    border: none !important;
+}
+.button:hover, button:hover {
+    filter: brightness(1.2);
+}
+
+/* Widgets and secondary blocks */
+.widget, .bp-card, .bp-directory {
+    background: var(--hs-card_background, var(--hs-background, #fff)) !important;
+    border: 1px solid var(--hs-border_color, #ccc) !important;
+}
