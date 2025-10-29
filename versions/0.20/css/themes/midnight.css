@@ -1,0 +1,131 @@
+/* * DARK MODE THEME
+ * Overrides the default CSS variables and adds theme-specific rules.
+ */
+
+/* 1. Re-define CSS variables */
+body.theme-dark-mode {
+    --hs-bg-primary: #212529;
+    --hs-bg-secondary: #343a40;
+    --hs-bg-tertiary: #495057;
+    --hs-text-primary: #f8f9fa;
+    --hs-text-secondary: #ced4da;
+    --hs-border-color: #495057;
+    --hs-accent-primary: #0d6efd;
+    --hs-accent-primary-hover: #0b5ed7;
+    --hs-accent-secondary: #198754;
+    --hs-accent-danger: #dc3545;
+    --hs-link-color: #6ea8fe;
+    --hs-golden-glow: #FFD700;
+}
+
+/* 2. Apply variables to site-wide elements */
+body.theme-dark-mode {
+    background-color: var(--hs-bg-primary) !important;
+    color: var(--hs-text-primary) !important;
+}
+
+body.theme-dark-mode .site-header-wrapper,
+body.theme-dark-mode #page,
+body.theme-dark-mode .site-header,
+body.theme-dark-mode .widget,
+body.theme-dark-mode .entry-content,
+body.theme-dark-mode .entry-summary,
+body.theme-dark-mode footer.site-footer,
+body.theme-dark-mode .site-info,
+body.theme-dark-mode #whats-new-form {
+    background-color: var(--hs-bg-secondary) !important;
+    border-color: var(--hs-border-color) !important;
+}
+
+body.theme-dark-mode #secondary .widget {
+    background-color: var(--hs-bg-tertiary) !important;
+    border: 1px solid var(--hs-border-color) !important;
+}
+
+/* 3. Typography & Links */
+body.theme-dark-mode h1,
+body.theme-dark-mode h2,
+body.theme-dark-mode h3,
+body.theme-dark-mode h4,
+body.theme-dark-mode h5,
+body.theme-dark-mode h6,
+body.theme-dark-mode .entry-title a {
+    color: var(--hs-text-primary) !important;
+}
+
+body.theme-dark-mode a {
+    color: var(--hs-link-color) !important;
+}
+
+body.theme-dark-mode a:hover {
+    color: #ceadff !important;
+}
+
+/* 4. Plugin-Specific Elements (HotSoup) */
+body.theme-dark-mode .hs-container,
+body.theme-dark-mode .hs-book-list li,
+body.theme-dark-mode .hs-my-book-list li,
+body.theme-dark-mode .hs-completed-section {
+    background-color: var(--hs-bg-tertiary) !important;
+    border-color: var(--hs-border-color) !important;
+    color: var(--hs-text-primary) !important;
+}
+
+body.theme-dark-mode .hs-progress-bar-container {
+    background-color: var(--hs-bg-tertiary) !important;
+}
+
+/* 5. BuddyPress Activity Stream */
+body.theme-dark-mode ul.activity-list li,
+body.theme-dark-mode div.activity-comments {
+    background-color: var(--hs-bg-tertiary) !important;
+    border-color: var(--hs-border-color) !important;
+}
+
+body.theme-dark-mode .activity-content,
+body.theme-dark-mode .activity-header p,
+body.theme-dark-mode .activity-meta a,
+body.theme-dark-mode div.activity-comments h4,
+body.theme-dark-mode div.activity-comments ul li,
+body.theme-dark-mode .acomment-options a {
+    color: var(--hs-text-primary) !important;
+}
+
+body.theme-dark-mode .activity-header p a,
+body.theme-dark-mode .activity-content a,
+body.theme-dark-mode .activity-comments a,
+body.theme-dark-mode .acomment-options a:hover {
+    color: var(--hs-link-color) !important;
+}
+
+body.theme-dark-mode .activity-header p a:hover,
+body.theme-dark-mode .activity-content a:hover,
+body.theme-dark-mode .activity-comments a:hover {
+    color: #ceadff !important;
+}
+
+body.theme-dark-mode #whats-new-content,
+body.theme-dark-mode #whats-new-textarea,
+body.theme-dark-mode div.activity-comments form textarea,
+body.theme-dark-mode div.activity-comments form input[type="text"] {
+    background-color: var(--hs-bg-primary) !important;
+    color: var(--hs-text-primary) !important;
+    border-color: var(--hs-border-color) !important;
+}
+
+body.theme-dark-mode .generic-button,
+body.theme-dark-mode .generic-button a,
+body.theme-dark-mode div.activity-comments form input[type="submit"],
+body.theme-dark-mode #whats-new-submit input[type="submit"] {
+    background: var(--hs-accent-primary) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+body.theme-dark-mode .generic-button:hover,
+body.theme-dark-mode .generic-button a:hover,
+body.theme-dark-mode div.activity-comments form input[type="submit"]:hover,
+body.theme-dark-mode #whats-new-submit input[type="submit"]:hover {
+    background: var(--hs-accent-primary-hover) !important;
+}
+
