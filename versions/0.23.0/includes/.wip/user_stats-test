@@ -1,0 +1,234 @@
+<?php
+
+// This part of HotSoup handles tracking user statistics.
+
+
+if (!defined('ABSPATH'))
+{
+	exit;
+}
+
+
+function hs_update_user_stats($user_id)
+{
+	if(!$user_id)
+	{
+		return;
+	}
+
+	global $wpdb;
+	$user_books_table = $wpdb -> prefix . 'user_books';
+
+
+	if ($force_recalc)
+	{
+		// Calculate total pages read for a user
+		$total_pages_read = $wpdb -> get_var($wpdb -> prepare(
+			"SELECT SUM(current_page) FROM $user_books_table WHERE user_id = %d",
+			$user_id
+		));
+		update_user_meta($user_id, 'hs_total_pages_read', intval($total_pages_read));
+
+
+
+		// Calculate how many books a user has completed
+		$completed_books_count = $wpdb -> get_var($wpdb -> prepare(
+			"SELECT COUNT(ub.book_id)
+			FROM $user_books_table AS ub
+			JOIN {$wpdb -> postmeta} AS pm ON ub.book_id = pm.post_id
+			WHERE ub.user_id = %d
+			AND pm.meta_key = 'nop'
+			AND ub.current_page >= pm.meta_value
+			AND CAST(pm.meta_value AS UNSIGNED) > 0",
+			$user_id
+		));
+		update_user_meta($user_id, 'hs_completed_books_count', intval($completed_books_count));
+
+		delete_transient('hs_user_stats_' . $user_id);
+	}
+
+	do_action('hs_stats_updated', $user_id);
+}
+
+
+// Displays user statistics on their profile
+function hs_display_user_stats()
+{
+	$user_id = bp_displayed_user_id();
+
+	if(!$user_id)
+	{
+		return;
+	}
+
+	// Retrieve user's statistics from user meta. This defaults to 0
+	$completed_count = get_user_meta($user_id, 'hs_completed_books_count', true) ?: 0;
+	$pages_read = get_user_meta($user_id, 'hs_total_pages_read', true) ?: 0;
+	?>
+
+
+	<div>Books Completed: <strong> <?php echo number_format_i18n($completed_count); ?> </strong></div>
+	<div>Pages Read: <strong> <?php echo number_format_i18n($pages_read); ?> </strong></div>
+
+
+
+	<?php
+}
+add_action('bp_before_member_header_meta', 'hs_display_user_stats', 11);
+
+function hs_get_user_stats($user_id)
+{
+	$cache_key = 'hs_user_stats_' . $user_id;
+	$stats = get_transient($cache_key);
+
+	if (false === $stats)
+	{
+		$stats = [
+		'completed_count' => get_user_meta($user_id, 'hs_completed_books_count', true) ?: 0,
+		'pages_read' => get_user_meta($user_id, 'hs_total_pages_read', true) ?: 0,
+		];
+
+	// For now, cache for 5 minutes.
+	set_transient($cache_key, $stats, 5 * MINUTE_IN_SECONDS);
+	}
+
+	return $stats;
+}
+
+
+// Recalculates a user's statistics wheneever they modify their progress
+function hs_update_stats_on_progress_change($user_id, $book_id, $old_page, $new_page)
+{
+	if (!$user_id || $book_id)
+	{
+		return;
+	}
+
+
+	// Retrieve the current total
+	$current_total = (int)get_user_meta($user_id, 'hs_total_pages_read', true);
+
+	// Calculate the difference
+	$page_difference = $new_page - $old_page;
+
+	// Update the total
+	$new_total = max(0, $current_total + $page_difference);
+	update_user_meta($user_id, 'hs_total_pages_read', $new_total);
+
+	// Determine if completion status has changed
+	$total_pages = (int)get_post_meta($book_id, 'nop', true);
+	$was_completed = ($total_pages > 0 && $old_page >= $total_pages);
+	$is_completed = ($total_pages > 0 && $new_page >= $total_pages);
+
+
+	if ($was_completed != $is_completed)
+	{
+		$completed_count = (int)get_user_meta($user_id, 'hs_completed_books_count', true);
+
+		if ($is_completed)
+		{
+			update_user_meta($user_id, 'hs_completed_books_count', $completed_count + 1);
+		}
+
+		else
+		{
+			update_user_meta($user_id, 'hs_completed_books_count', max(0, $completed_count - 1));
+		}
+
+	}
+
+	delete_transient('hs_user_stats_' . $user_id);
+	do_action('hs_stats_updated', $user_id);
+}
+
+
+// Update user's statistics whenever a book is added to their library
+function hs_update_stats_on_book_added($user_id, $booK_id)
+{
+	if (!$user_id)
+	{
+		return;
+	}
+
+	// A book being added with no progress (0/whatever pages) should not cause a recalculation of pages read
+	delete_transient('hs_user_stats_' . $user_id);
+}
+
+
+// Update user's statistics whenever a book is removed from their library
+function hs_update_stats_on_book_removed($user_id, $book_id)
+{
+	if (!$user_id || $book_id)
+	{
+		return;
+	}
+
+	global $wpdb;
+	$user_books_table = $wpdb -> prefix . 'user_books';
+
+
+	// Retrieve the book's current progress before it gets removed
+	$book_entry = $wpdb -> get_row($wpdb -> prepare(
+		"SELECT current_page FROM $user_books_table WHERE user_id = %d AND book_id = %d",
+		$user_id,
+		$book_id
+	));
+
+
+	if ($book_entry)
+	{
+		// Subtract the pages from the user's total
+		$current_total = (int)get_user_meta($user_id, 'hs_total_pages_read', true);
+		$new_total = max(0, $current_total - (int)$book_entry -> current_page);
+		update_user_meta($user_id, 'hs_total_pages_read', $new_total);
+
+		// Check if the book had been completed
+		$total_pages = (int)get_post_meta($book_id, 'nop', true);
+		$was_completed= ($total_pages > 0 && (int)$book_entry -> current_page >= $total_pages);
+
+		if ($was_completed)
+		{
+			$completed_count = (int)get_user_meta($user_id, 'hs_completed_books_count', true);
+			update_user_meta($user_id, 'hs_completed_books_count', max(0, $completed_count - 1));
+		}
+	}
+
+	delete_transient('hs_user_stats_' . $user_id);
+	do_action('hs_stats_updated', $user_id);
+}
+
+
+
+
+function hs_user_stats_styles()
+{
+	echo '<style>
+	.hs-user-stats-widget
+	{
+		margin: 20px 0;
+		padding: 20px;
+		background-color: #fff;
+		border: 1px solid #e9ecef;
+		border-radius: 8px;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+	}+
+
+	.hs-user-stats-widget h3
+	{
+		margin-top: 0;
+		margin-bottom: 15px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #e9ecef;
+		font-size: 16px;
+		color: #343a40;
+	}
+
+	.hs-user-stats-widget ul
+	{
+		list-style: none;
+		padding: 0;
+		color: #495057;
+	}
+	</style>';
+}
+//add_action('wp_head', 'hs_user_stats_styles');
