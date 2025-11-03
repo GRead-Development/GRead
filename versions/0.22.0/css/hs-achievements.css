@@ -1,0 +1,207 @@
+.hs-achievements-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.hs-achievements-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.hs-achievements-header h3 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    color: #333;
+}
+
+.hs-achievement-progress {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+.hs-achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.hs-achievement-item {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.hs-achievement-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hs-achievement-item.unlocked {
+    border-color: #FFD700;
+    background: linear-gradient(135deg, #fffef9 0%, #fff 100%);
+}
+
+.hs-achievement-item.locked {
+    opacity: 0.6;
+}
+
+.hs-achievement-item.hidden-achievement {
+    background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%);
+    border-style: dashed;
+}
+
+/* Achievement Icon */
+.hs-achievement-icon {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.hs-achievement-item.unlocked .hs-achievement-icon {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        box-shadow: 0 2px 16px rgba(255, 215, 0, 0.5);
+    }
+}
+
+.hs-achievement-icon .hidden-icon {
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Achievement Info */
+.hs-achievement-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.hs-achievement-name {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.hs-achievement-item.unlocked .hs-achievement-name {
+    color: #d4a015;
+}
+
+.hs-achievement-description {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Progress Bar */
+.hs-achievement-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.hs-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.hs-achievement-item.unlocked .hs-progress-fill {
+    background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+}
+
+.hs-achievement-requirement {
+    margin: 0;
+    font-size: 13px;
+    color: #888;
+}
+
+.hs-achievement-requirement .unlocked-text {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hs-achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hs-achievement-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .hs-achievement-icon {
+        margin-bottom: 10px;
+    }
+}
+
+/* Special unlock animation */
+@keyframes unlockBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.hs-achievement-item.just-unlocked {
+    animation: unlockBounce 0.6s ease;
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Icon type specific styles */
+.hs-achievement-icon[data-icon-type="trophy"] {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+}
+
+.hs-achievement-icon[data-icon-type="star"] {
+    background: linear-gradient(135deg, #FFD700 0%, #FFE55C 100%);
+}
+
+.hs-achievement-icon[data-icon-type="medal"] {
+    background: linear-gradient(135deg, #C0C0C0 0%, #E8E8E8 100%);
+}
+
+.hs-achievement-icon[data-icon-type="book"] {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+}
+
+.hs-achievement-icon[data-icon-type="fire"] {
+    background: linear-gradient(135deg, #FF4500 0%, #FF6347 100%);
+}
+
+.hs-achievement-icon[data-icon-type="crown"] {
+    background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+}
