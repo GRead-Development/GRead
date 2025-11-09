@@ -1,0 +1,303 @@
+/*
+ * HotSoup! Theme Styles
+ *
+ * These rules are intentionally specific to override parent theme (e.g., BuddyX) styles.
+*/
+
+/* ==========================================================================
+   1. Dark Mode Theme
+   ========================================================================== */
+
+body.theme-dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* --- General Layout & Widgets --- */
+body.theme-dark-mode #page,
+body.theme-dark-mode .site-header,
+body.theme-dark-mode .widget,
+body.theme-dark-mode .entry-content,
+body.theme-dark-mode .entry-summary,
+body.theme-dark-mode footer.site-footer {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+}
+
+body.theme-dark-mode #secondary .widget {
+    background-color: #2a2a2a !important;
+    border: 1px solid #444 !important;
+}
+
+/* --- Typography & Links --- */
+body.theme-dark-mode h1,
+body.theme-dark-mode h2,
+body.theme-dark-mode h3,
+body.theme-dark-mode h4,
+body.theme-dark-mode h5,
+body.theme-dark-mode h6,
+body.theme-dark-mode .entry-title a {
+    color: #ffffff !important;
+}
+
+body.theme-dark-mode a {
+    color: #bb86fc !important;
+}
+
+body.theme-dark-mode a:hover {
+    color: #ceadff !important;
+}
+
+/* --- Plugin-Specific Elements (HotSoup) --- */
+body.theme-dark-mode .hs-container,
+body.theme-dark-mode .hs-book-list li,
+body.theme-dark-mode .hs-my-book-list li,
+body.theme-dark-mode .hs-completed-section {
+    background-color: #2a2a2a !important;
+    border-color: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+body.theme-dark-mode .hs-progress-bar-container {
+    background-color: #444 !important;
+}
+
+
+/* ==========================================================================
+   2. Parchment Theme
+   ========================================================================== */
+
+body.theme-parchment {
+    background-color: #fbf6e9 !important;
+    color: #5b4636 !important;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* --- General Layout & Widgets --- */
+body.theme-parchment #page,
+body.theme-parchment .site-header,
+body.theme-parchment .widget,
+body.theme-parchment .entry-content,
+body.theme-parchment .entry-summary,
+body.theme-parchment footer.site-footer {
+    background-color: #f4ead9 !important;
+    border: 1px solid #dcd1bb !important;
+}
+
+body.theme-parchment #secondary .widget {
+    background-color: #f9f2e4 !important;
+    border: 1px solid #dcd1bb !important;
+}
+
+/* --- Typography & Links --- */
+body.theme-parchment h1,
+body.theme-parchment h2,
+body.theme-parchment h3,
+body.theme-parchment h4,
+body.theme-parchment h5,
+body.theme-parchment h6,
+body.theme-parchment .entry-title a {
+    color: #4a3b2a !important;
+    border-bottom-color: #dcd1bb;
+}
+
+body.theme-parchment a {
+    color: #6a573b !important;
+}
+
+body.theme-parchment a:hover {
+    color: #8c7350 !important;
+}
+
+/* --- Plugin-Specific Elements (HotSoup) --- */
+body.theme-parchment .hs-container,
+body.theme-parchment .hs-book-list li,
+body.theme-parchment .hs-my-book-list li,
+body.theme-parchment .hs-completed-section {
+    background-color: #f9f2e4 !important;
+    border-color: #dcd1bb !important;
+    color: #5b4636 !imporant;
+}
+
+body.theme-parchment .hs-progress-bar-container {
+    background-color: #dcd1bb !important;
+}
+
+body.theme-parchment .hs-progress-bar {
+    background-color: #6a573b !important;
+}
+
+/* ==========================================================================
+   3. Theme Selector (in profile)
+   ========================================================================== */
+   
+.hs-themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.hs-theme-option label {
+    display: block;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.hs-theme-option input[type="radio"] {
+    display: none;
+}
+
+.hs-theme-option .theme-preview {
+    width: 100%;
+    height: 80px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.hs-theme-option .theme-name {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.hs-theme-option input[type="radio"]:checked + .theme-preview {
+    box-shadow: 0 0 0 4px #fff, 0 0 0 6px #0073aa;
+}
+
+/* Locked themes */
+.hs-theme-option.locked label {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: #f9f9f9;
+}
+
+.hs-theme-option.locked .theme-unlock-message {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #777;
+    margin-top: 5px;
+    display: block;
+}
+
+#hs-theme-selector-feedback {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+#hs-theme-selector-feedback.success {
+    background: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+}
+
+#hs-theme-selector-feedback.error {
+    background: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+}
+
+/* ==========================================================================
+   BuddyPress Activity Stream Overrides
+   ========================================================================== */
+
+/* --- Dark Mode Activity Stream --- */
+body.theme-dark-mode ul.activity-list li,
+body.theme-dark-mode div.activity-comments {
+    background-color: #2a2a2a !important;
+    border-color: #444 !important;
+}
+
+body.theme-dark-mode .activity-content,
+body.theme-dark-mode .activity-header p,
+body.theme-dark-mode .activity-meta a,
+body.theme-dark-mode div.activity-comments h4,
+body.theme-dark-mode div.activity-comments ul li,
+body.theme-dark-mode .acomment-options a {
+    color: #e0e0e0 !important;
+}
+
+body.theme-dark-mode .activity-header p a,
+body.theme-dark-mode .activity-content a,
+body.theme-dark-mode .activity-comments a,
+body.theme-dark-mode .acomment-options a:hover {
+    color: #bb86fc !important;
+}
+
+body.theme-dark-mode .activity-header p a:hover,
+body.theme-dark-mode .activity-content a:hover,
+body.theme-dark-mode .activity-comments a:hover {
+    color: #ceadff !important;
+}
+
+body.theme-dark-mode div.activity-comments form textarea,
+body.theme-dark-mode div.activity-comments form input[type="text"] {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #444 !important;
+}
+
+body.theme-dark-mode div.activity-comments form input[type="submit"],
+body.theme-dark-mode #whats-new-submit input[type="submit"] {
+    background: var(--hs-accent-primary, #0d6efd) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+body.theme-dark-mode div.activity-comments form input[type="submit"]:hover,
+body.theme-dark-mode #whats-new-submit input[type="submit"]:hover {
+    background: var(--hs-accent-primary-hover, #0b5ed7) !important;
+}
+
+/* --- Parchment Activity Stream --- */
+body.theme-parchment ul.activity-list li,
+body.theme-parchment div.activity-comments {
+    background-color: #f9f2e4 !important;
+    border-color: #dcd1bb !important;
+}
+
+body.theme-parchment .activity-content,
+body.theme-parchment .activity-header p,
+body.theme-parchment .activity-meta a,
+body.theme-parchment div.activity-comments h4,
+body.theme-parchment div.activity-comments ul li,
+body.theme-parchment .acomment-options a {
+    color: #5b4636 !important;
+}
+
+body.theme-parchment .activity-header p a,
+body.theme-parchment .activity-content a,
+body.theme-parchment .activity-comments a,
+body.theme-parchment .acomment-options a:hover {
+    color: #6a573b !important;
+}
+
+body.theme-parchment .activity-header p a:hover,
+body.theme-parchment .activity-content a:hover,
+body.theme-parchment .activity-comments a:hover {
+    color: #8c7350 !important;
+}
+
+body.theme-parchment div.activity-comments form textarea,
+body.theme-parchment div.activity-comments form input[type="text"] {
+    background-color: #fbf6e9 !important;
+    color: #5b4636 !important;
+    border-color: #dcd1bb !important;
+}
+
+body.theme-parchment div.activity-comments form input[type="submit"],
+body.theme-parchment #whats-new-submit input[type="submit"] {
+    background: var(--hs-accent-primary, #8a6d4c) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+body.theme-parchment div.activity-comments form input[type="submit"]:hover,
+body.theme-parchment #whats-new-submit input[type="submit"]:hover {
+    background: var(--hs-accent-primary-hover, #6a4d2c) !imporant;
+}
