@@ -1,0 +1,122 @@
+<?php
+// TODO:
+/*
+	Allow users to search users using the same autofill system that is available for activity posts
+	Create a section in the "My Library" page for reading sessions.
+*/
+
+
+// Allows members to read books together
+function hs_reading_sessions_create_table()
+{
+	global $wpdb;
+	$charset_collate = $wpdb -> get_charset_collate();
+
+	$sessions_table = $wpdb -> prefix . 'hs_reading_sessions';
+
+	$sql = "CREATE TABLE $sessions_table (
+		id mediumint(9) NOT NULL AUTO_INCREMENT,
+		book_id bigint(20) UNSIGNED NOT NULL,
+		creator_id bigint(20) UNSIGNED NOT NULL,
+		session_name varchar(200),
+		date_created datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+		status varchar(20) DEFAULT 'active',
+		PRIMARY KEY (id)
+	) $charset_collate;";
+
+
+	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	dbDelta($sql);
+
+
+	// Participants
+	$participants_table = $wpdb -> prefix . 'hs_session_participants';
+	$sql2 = "CREATE TABLE $participants_table (
+		id mediumint(9) NOT NULL AUTO_INCREMENT,
+		session_id mediumint(9) NOT NULL,
+		user_id bigint(20) UNSIGNED NOT NULL,
+		current_page int(11) DEFAULT 0,
+		status varchar(20) DEFAULT 'reading',
+		PRIMARY KEY (id),
+		UNIQUE KEY session_user_unique (session_id, user_id)
+	) $charset_collate;";
+
+	dbDelta($sql2);
+}
+
+// Enqueue JavaScript
+function hs_enqueue_reading_sessions_js()
+{
+	if (is_singular('book'))
+	{
+		wp_enqueue_script(
+			'hs-reading-sessions',
+			plugin_dir_url(__FILE__) . '../js/reading-sessions.js',
+			['jquery'],
+			'1.0.0',
+			true
+		);
+	}
+}
+add_action('wp_enqueue_scripts', 'hs_enqueue_reading_sessions_js');
+
+// Add the "Read Together" button to book pages
+function hs_add_read_together_button($content)
+{
+	if (is_singular('book') && is_user_logged_in())
+	{
+		global $post;
+		$content .= '<button class="hs-button hs-create-session" data-book-id="' . $post -> ID . '">Read Together</button>';
+	}
+
+	return $content;
+}
+add_filter('the_content', 'hs_add_read_together_button');
+
+
+// AJAX stuff to create the session
+function hs_ajax_create_reading_session()
+{
+	check_ajax_referer('hs_ajax_nonce', 'nonce');
+
+	if (!is_user_logged_in())
+	{
+		wp_send_json_error(['message' => 'Not logged in!']);
+	}
+
+	$user_id = get_current_user_id();
+	$book_id = intval($_POST['book_id']);
+	$invited_users = isset($_POST['invited_users']) ? array_map('intval', $_POST['invited_users']) : [];
+
+	global $wpdb;
+	$sessions_table = $wpdb -> prefix . 'hs_reading_sessions';
+	$participants_table = $wpdb -> prefix . 'hs_session_participants';
+
+
+	// Create the session
+	$wpdb -> insert($sessions_table, [
+		'book_id' => $book_id,
+		'creator_id' => $user_id,
+		'session_name' => get_the_title($book_id) . ' - Reading Together',
+		'date_created' => current_time('mysql')
+	]);
+
+	$session_id = $wpdb -> insert_id;
+
+
+	// Add creator
+	$wpdb -> insert($participants_table, [
+		'session_id' => $session_id,
+		'user_id' => $user_id
+	]);
+
+	foreach ($invited_users as $invited_id)
+	{
+		$wpdb -> insert($participants_table, [
+			'session_id' => $session_id,
+			'user_id' => $invited_id
+		]);
+	}
+	wp_send_json_success(['session_id' => $session_id]);
+}
+add_action('wp_ajax_hs_create_reading_session', 'hs_ajax_create_reading_session');
