@@ -1,0 +1,122 @@
+/* Book Mentions Styling */
+
+/* At.js dropdown styling */
+.atwho-view {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	margin-top: 18px;
+	background: white;
+	color: black;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	min-width: 120px;
+	max-height: 200px;
+	overflow-y: auto;
+	z-index: 11110 !important;
+}
+
+.atwho-view .atwho-header {
+	padding: 5px;
+	margin: 5px;
+	cursor: pointer;
+	border-bottom: solid 1px #eaeff1;
+	color: #6f8495;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.atwho-view .atwho-header .small {
+	color: #6f8495;
+	float: right;
+	padding-top: 2px;
+	margin-right: -5px;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.atwho-view .atwho-header:hover {
+	cursor: default;
+}
+
+.atwho-view .cur {
+	background: #3366FF;
+	color: white;
+}
+
+.atwho-view .cur small {
+	color: white;
+}
+
+.atwho-view strong {
+	color: #3366FF;
+}
+
+.atwho-view .cur strong {
+	color: white;
+	font: bold;
+}
+
+.atwho-view ul {
+	list-style: none;
+	padding: 0;
+	margin: auto;
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.atwho-view ul li {
+	display: block;
+	padding: 8px 12px;
+	border-bottom: 1px solid #DDD;
+	cursor: pointer;
+	margin: 0;
+	/* Remove any left border or padding that might cause the bar */
+	border-left: none !important;
+	background: white;
+}
+
+.atwho-view ul li:last-child {
+	border-bottom: none;
+}
+
+.atwho-view ul li:hover,
+.atwho-view ul li.cur {
+	background: #f0f0f0;
+}
+
+.atwho-view ul li.cur {
+	background: #3366FF;
+	color: white;
+}
+
+.atwho-view ul li.cur .hs-book-author {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.atwho-view small {
+	font-size: 0.85em;
+	color: #777;
+	font-weight: normal;
+}
+
+/* Book tag links in activity content */
+a.hs-book-tag-link {
+	color: #3366FF;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s;
+}
+
+a.hs-book-tag-link:hover {
+	color: #0052CC;
+	text-decoration: underline;
+}
+
+/* Make sure book author text is visible in dropdown */
+.hs-book-author {
+	color: #999 !important;
+	font-size: 0.9em;
+}
